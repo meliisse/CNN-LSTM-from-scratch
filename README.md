@@ -73,6 +73,13 @@ Trains a **hybrid CNN + LSTM** model:
 - Tracks training & validation metrics (`loss` and `accuracy`)
 
 ---
+## 🚀 How to Run
+1. [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/1dEY450KxEOGVozh8mxL0GibG1IhmYvX_)
+2. Clone this repository:
+
+   ```bash
+   git clone https://github.com/meliisse/CNN-LSTM-from-scratch.git
+   cd CNN-LSTM-from-scratch
 
 ### 🔍 4. Prediction
 
@@ -81,14 +88,6 @@ Given a list of words (prefix), predicts the next most probable tokens:
 ```python
 predict_next(model, ["breast", "cancer", "is"], top_k=5)
 
----
 
-## 🚀 How to Run
-1. [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/1dEY450KxEOGVozh8mxL0GibG1IhmYvX_)
-2. Clone this repository:
-
-   ```bash
-   git clone https://github.com/meliisse/CNN-LSTM-from-scratch.git
-   cd CNN-LSTM-from-scratch
    
 
