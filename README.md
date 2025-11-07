@@ -73,6 +73,13 @@ Trains a **hybrid CNN + LSTM** model:
 - Tracks training & validation metrics (`loss` and `accuracy`)
 
 ---
+
+## 🔮 Prediction
+
+Use the **`predict_next()`** function to predict the most probable next tokens from a given prefix.
+
+
+
 ## 🚀 How to Run
 1. [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/1dEY450KxEOGVozh8mxL0GibG1IhmYvX_)
 2. Clone this repository:
@@ -80,14 +87,6 @@ Trains a **hybrid CNN + LSTM** model:
    ```bash
    git clone https://github.com/meliisse/CNN-LSTM-from-scratch.git
    cd CNN-LSTM-from-scratch
-
-### 🔍 4. Prediction
-
-**`predict_next()`**  
-Given a list of words (prefix), predicts the next most probable tokens:  
-```python
-predict_next(model, ["breast", "cancer", "is"], top_k=5)
-
 
    
 
