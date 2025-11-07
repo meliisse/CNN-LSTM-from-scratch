@@ -4,39 +4,82 @@ This project is part of a deep learning challenge designed to test **fundamental
 
 ---
 
-## 📋 Challenge Description
+## 🎯 Objective
 
-You must build a **Convolutional Neural Network (CNN)** combined with a **Long Short-Term Memory (LSTM)** network entirely **from scratch**, using only **low-level libraries like NumPy**.
+Build a **Convolutional Neural Network (CNN)** combined with a **Long Short-Term Memory (LSTM)** model **entirely from scratch**, including:
+- Manual implementation of **forward** and **backward propagation**
+- Implementation of convolution operations, pooling, ReLU activation, and fully connected layers
+- Sequence modeling using an LSTM cell coded from the ground up
+- Text prediction task on a custom **medical corpus about breast cancer**
 
-Your task is to implement both architectures manually — from **convolution operations** and **backpropagation** to **sequence modeling** — without relying on high-level frameworks such as:
-- PyTorch 🧩  
-- TensorFlow 🔥  
-- scikit-learn ⚙️  
-- transformers 🤖  
-
-If implementing both models feels too ambitious, you may submit only a **CNN** or only an **LSTM** model.  
-However, **full CNN+LSTM implementations** will earn **double points** 🏆 for demonstrating mastery of deep learning architecture integration.
 
 ---
 
-## 🏗️ Architecture Overview
+## 🧩 Project Overview
 
-### 🔹 Convolutional Neural Network (CNN)
-- Manual implementation of convolution and pooling layers  
-- Activation functions (ReLU, Softmax, etc.) implemented with NumPy  
-- Backpropagation through convolutional filters  
+### 🏗️ 1. Preprocessing
+**Goal:** Convert raw text sentences into numerical sequences usable by neural networks.
 
-### 🔹 Long Short-Term Memory (LSTM)
-- Gate computations (input, forget, output) coded manually  
-- Sequence processing with hidden and cell states  
-- Integration with CNN outputs for sequential modeling  
+- **`build_vocab()`**  
+  Builds a vocabulary from the corpus and assigns each word a unique integer index.  
+  Special tokens:  
+  - `<PAD>` → padding  
+  - `<UNK>` → unknown words  
+
+- **`texts_to_sequences()`**  
+  Converts text sentences into sequences of word indices.
+
+- **`create_examples()`**  
+  Generates `(X, Y)` training pairs for next-word prediction tasks.  
+  Example:  
+  `["breast", "cancer", "screening"] → predict("methods")`
 
 ---
 
-## ⚙️ Technologies Used
-- **Python 3**
-- **NumPy** (only allowed dependency)
-- *(Optional)* Matplotlib for visualizations
+### 🧱 2. Model Components (NumPy Implementations)
+
+#### 🔸 Convolution Layer — `Conv1D`
+Manually implements 1D convolution:
+- Sliding filters over embeddings
+- Weight updates with backpropagation
+- Includes **ReLU activation** and **global max pooling**
+
+#### 🔸 Dense Layer — `Dense`
+A fully connected layer implemented using:
+- Matrix multiplication: `y = xW + b`
+- Backpropagation via the chain rule
+
+#### 🔸 LSTM Layer — `LSTM`
+Implements a recurrent neural network that learns temporal dependencies:
+- Manual computation of **input**, **forget**, **output** gates
+- **Cell state** and **hidden state** updates
+- Backpropagation Through Time (BPTT)
+
+---
+
+### ⚙️ 3. Training Functions
+
+#### 🧠 `train_cnn()`
+Trains a standalone CNN for text prediction:
+- Learns from context windows of size `seq_len`
+- Uses ReLU + Global Max Pooling + Softmax
+- Optimized with **stochastic gradient descent (SGD)**
+
+#### 🔄 `train_cnn_lstm()`
+Trains a **hybrid CNN + LSTM** model:
+- CNN extracts spatial features from word embeddings
+- LSTM captures sequential dependencies
+- Dense layer predicts the next word
+- Tracks training & validation metrics (`loss` and `accuracy`)
+
+---
+
+### 🔍 4. Prediction
+
+**`predict_next()`**  
+Given a list of words (prefix), predicts the next most probable tokens:  
+```python
+predict_next(model, ["breast", "cancer", "is"], top_k=5)
 
 ---
 
